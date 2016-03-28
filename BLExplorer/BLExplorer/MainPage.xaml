@@ -8,6 +8,8 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <TextBlock x:Name="adapterLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="BT Adaptor" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Height="32" Width="126"/>
+        <ComboBox x:Name="btAdapters" HorizontalAlignment="Left" Margin="131,30,0,0" VerticalAlignment="Top" Width="219" Grid.Row="0" RenderTransformOrigin="0.975,0.344" SelectionChanged="btAdapters_SelectionChanged"/>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="73,598,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,-1.778" Width="213" Click="button_Click"/>
     </Grid>
 </Page>
