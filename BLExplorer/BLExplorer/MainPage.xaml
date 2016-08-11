@@ -5,11 +5,23 @@
     xmlns:local="using:BLExplorer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Height="703">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock x:Name="adapterLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="BT Adaptor" VerticalAlignment="Top" Grid.Row="0" Grid.Column="0" Height="32" Width="126"/>
-        <ComboBox x:Name="btAdapters" HorizontalAlignment="Left" Margin="131,30,0,0" VerticalAlignment="Top" Width="219" Grid.Row="0" RenderTransformOrigin="0.975,0.344" SelectionChanged="btAdapters_SelectionChanged"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="73,598,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.508,-1.778" Width="213" Click="button_Click"/>
+        <StackPanel>
+            <TextBlock x:Uid="AppName" Text="BLExplorer" Grid.Row="1" Grid.Column="1" Margin="5" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" Padding="5">
+                <TextBlock x:Name="advertiserLabel" HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="BLE Advertiser:" x:Uid="AdvertiserCaption" 
+                           Grid.Row="0" Grid.Column="0" Height="32" MinWidth="50" VerticalAlignment="Center"/>
+                <ComboBox x:Name="btAdvertisers" HorizontalAlignment="Right" Margin="25,0,0,-5" VerticalAlignment="Top" Width="219" 
+                          Grid.Row="0" SelectionChanged="btAdapters_SelectionChanged" 
+                      ItemsSource="{x:Bind AdsReceived}" Padding="0" HorizontalContentAlignment="Right"/>
+            </StackPanel>
+                 <TextBlock x:Name="outBlock" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Left" Margin="5,5,5,5" Height="490" Width="345"/>
+           </StackPanel> 
+        </StackPanel>
+        <Button x:Name="startButton" Content="Start" x:Uid="StartButton" HorizontalAlignment="Center" Margin="73,598,0,0" VerticalAlignment="Top" Width="213" Click="button_Click"/>
+        <Button x:Name="button" Content="Break" HorizontalAlignment="Left" Margin="266,661,0,0" VerticalAlignment="Top" Click="button_Click_1"/>
     </Grid>
 </Page>

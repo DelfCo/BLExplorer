@@ -29,11 +29,28 @@ namespace BLExplorer
     {
         // The Bluetooth LE advertisement watcher class is used to control and customize Bluetooth LE scanning. 
         private BluetoothLEAdvertisementWatcher watcher;
+        private List<BLEAdInfo> adsReceived;
 
+
+
+        internal List<BLEAdInfo> AdsReceived
+        {
+            get
+            {
+                return adsReceived;
+            }
+
+            set
+            {
+                adsReceived = value;
+            }
+        }
 
         public MainPage()
         {
             this.InitializeComponent();
+
+            AdsReceived = new List<BLEAdInfo>();
 
             InitBLEWatching();
         }
@@ -41,6 +58,8 @@ namespace BLExplorer
         private void btAdapters_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // fill in information about the selected BT adapter here.
+            
+            // Dump the current selection to outBlock
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -93,12 +112,31 @@ namespace BLExplorer
         // store this so I can list it in the UI.
         private async void OnAdvertisementReceived(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisementReceivedEventArgs eventArgs)
         {
+            // BUGBUG: this is too simple. We should only keep the latest advertisement from each device, so we need to replace any existing list entry 
+            // that matches the eventArgs.BluetoothAddress and has an older eventArgs.Timestamp
+            //adsReceived.Add(eventArgs);
+
+            BLEAdInfo newAd = new BLEAdInfo(eventArgs);
+            // new, improved code:
+            if (!AdsReceived.Contains(newAd))
+            {
+                // new item. Add it.
+                AdsReceived.Add(newAd);
+            }
+            else
+            {
+                // it's a duplicate of a known ad.
+                // replace the old ad with the latest ad
+                // and trigger UI update
+
+            }
         }
 
         // triggered when a BLE watcher is stopped.
         // Clean up cached advertiser data, it's no longer useful.
         private async void OnAdvertisementWatcherStopped(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisementWatcherStoppedEventArgs eventArgs)
         {
+            AdsReceived.Clear();
         }
 
         /// <summary> 
@@ -133,6 +171,12 @@ namespace BLExplorer
         private void button_Click(object sender, RoutedEventArgs e)
         {
             watcher.Start();
+        }
+
+        private void button_Click_1(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debugger.Break();
+
         }
     }
 }

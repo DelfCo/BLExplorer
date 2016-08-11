@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,6 +34,15 @@ namespace BLExplorer
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            // How to force your app to run in a particular culture (here, pseudo-loc):
+            //var culture = new CultureInfo("qps-ploc");
+            //Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
+            //CultureInfo.DefaultThreadCurrentCulture = culture;
+            //CultureInfo.DefaultThreadCurrentUICulture = culture;
+            //CultureInfo.CurrentCulture = culture;
+            //CultureInfo.CurrentUICulture = culture;
+
         }
 
         /// <summary>
